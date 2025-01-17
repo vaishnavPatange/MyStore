@@ -1,0 +1,65 @@
+﻿@page
+@model MyStore.Pages.Client.EditModel
+@{
+}
+
+<br />
+
+<h2>Create New Client</h2>
+
+@if (Model.ErrorMessage.Length > 0)
+{
+	<div class="alert alert-warning alert-dismissible fade show">
+		<strong> @Model.ErrorMessage </strong>
+		<button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close"></button>
+	</div>
+}
+
+
+<div>
+	
+	<form method="POST" class="form-control">
+		<input type="hidden" name="id" value="@Model.clientInfo.id" />
+		<div class="mb-3 col-lg-12">
+			<label class="col-sm-3 col-form-label">Name</label>
+			<div class="col-sm-6 ">
+				<input type="text" class="form-control" name="name" value="@Model.clientInfo.name" placeholder="Enter your name" />
+			</div>
+		</div>
+		<div class="mb-3">
+			<label class="col-sm-3 col-form-label">Email</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" name="email" value="@Model.clientInfo.email" placeholder="Enter your email" />
+			</div>
+		</div>
+		<div class="mb-3">
+			<label class="col-sm-3 col-form-label">Phone</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" name="phone" value="@Model.clientInfo.phone" placeholder="Enter your phone no." />
+			</div>
+		</div>
+		<div class="mb-3">
+			<label class="col-sm-3 col-form-label">Address</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" name="address" value="@Model.clientInfo.address" placeholder="Enter your Address" />
+			</div>
+		</div>
+
+		@if (Model.successMessage.Length > 0)
+		{
+			<div class="alert alert-success alert-dismissible fade show">
+				<strong> @Model.successMessage </strong>
+				<button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close"></button>
+			</div>
+		}
+
+		<div class="row mb-3">
+			<div class="offset-sm-3 col-sm-3 d-grid">
+				<button type="submit" class="btn btn-success "> Submit </button>
+			</div>
+			<div class="col-sm-3 d-grid">
+				<a class="btn btn-outline-success" href="/" role="button"> Cancle </a>
+			</div>
+		</div>
+	</form>
+</div>
