@@ -1,0 +1,35 @@
+﻿@page
+@using Microsoft.Data.SqlClient;
+@{
+
+	try
+	{
+		string id = Request.Query["id"];
+
+		string connectionString = "Data Source=VAISHNAV\\SQLEXPRESS;Initial Catalog=mystore;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+
+		using (SqlConnection connection = new SqlConnection(connectionString)) 
+		{
+			connection.Open();
+
+			string sql = "DELETE FROM client WHERE id=@id";
+
+			using (SqlCommand command = new SqlCommand(sql, connection))
+			{
+				command.Parameters.AddWithValue("@id", id);
+
+				command.ExecuteNonQuery();
+
+			}
+
+		}
+
+		Response.Redirect("/Client/Index");
+	}
+	catch (Exception)
+	{
+
+		throw;
+	}
+
+}

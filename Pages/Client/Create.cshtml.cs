@@ -33,17 +33,17 @@ namespace MyStore.Pages.Client
             {
                 connection.Open();
 
-                string sql = "INSERT INTO client" + "(name, email, phone, address) VALUES " +
+                string sql = "INSERT INTO client " +"(name, email, phone, address) VALUES " +
                              "(@name, @email, @phone, @address)";
 
-                using (SqlCommand commmand = new SqlCommand(sql, connection))
+                using (SqlCommand command = new SqlCommand(sql, connection))
                 {
-                    commmand.Parameters.AddWithValue("@name", clientInfo.name);
-                    commmand.Parameters.AddWithValue("@email", clientInfo.phone);
-                    commmand.Parameters.AddWithValue("@phone", clientInfo.email);
-                    commmand.Parameters.AddWithValue("@address", clientInfo.address);
+                    command.Parameters.AddWithValue("@name", clientInfo.name);
+                    command.Parameters.AddWithValue("@email", clientInfo.email);
+                    command.Parameters.AddWithValue("@phone", clientInfo.phone);
+                    command.Parameters.AddWithValue("@address", clientInfo.address);
 
-                    commmand.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
                 }
             }
 

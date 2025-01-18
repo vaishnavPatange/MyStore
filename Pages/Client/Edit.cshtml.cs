@@ -50,19 +50,7 @@ namespace MyStore.Pages.Client
 
         public void OnPost()
         {
-            clientInfo.id = Request.Form["id"];
-            clientInfo.name = Request.Form["name"];
-            clientInfo.phone = Request.Form["phone"];
-            clientInfo.email = Request.Form["email"];
-            clientInfo.address = Request.Form["address"];
-
-            if (clientInfo.name.Length == 0 || clientInfo.phone.Length == 0 ||
-                clientInfo.email.Length == 0 || clientInfo.address.Length == 0 || clientInfo.id.Length == 0)
-            {
-                ErrorMessage = "All the fields are required";
-                return;
-            }
-
+            
             try
             {
                 clientInfo.name = Request.Form["name"];
@@ -84,19 +72,19 @@ namespace MyStore.Pages.Client
                 {
                     connection.Open();
 
-                    string sql = "UPDATE client" +
-                                "SET name=@name, email=@email, phone=@phone, address=@address" +
+                    string sql = "UPDATE client " +
+                                "SET name=@name, email=@email, phone=@phone, address=@address " +
                                 "WHERE id=@id";
 
-                    using (SqlCommand commmand = new SqlCommand(sql, connection))
+                    using (SqlCommand command = new SqlCommand(sql, connection))
                     {
-                        commmand.Parameters.AddWithValue("@name", clientInfo.name);
-                        commmand.Parameters.AddWithValue("@email", clientInfo.phone);
-                        commmand.Parameters.AddWithValue("@phone", clientInfo.email);
-                        commmand.Parameters.AddWithValue("@address", clientInfo.address);
-                        commmand.Parameters.AddWithValue("@id", clientInfo.id);
+                        command.Parameters.AddWithValue("@name", clientInfo.name);
+                        command.Parameters.AddWithValue("@email", clientInfo.email);
+                        command.Parameters.AddWithValue("@phone", clientInfo.phone);
+                        command.Parameters.AddWithValue("@address", clientInfo.address);
+                        command.Parameters.AddWithValue("@id", clientInfo.id);
 
-                        commmand.ExecuteNonQuery();
+                        command.ExecuteNonQuery();
                     }
                 }
 
@@ -112,6 +100,7 @@ namespace MyStore.Pages.Client
             catch (Exception e)
             {
                 ErrorMessage = e.Message;
+                return;
             }
         }
     }
